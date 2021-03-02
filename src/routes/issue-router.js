@@ -6,10 +6,11 @@
  */
 
 import express from 'express'
-import { HomeController } from '../controllers/home-controller.js'
+import { IssueController } from '../controllers/issue-controller.js'
 
 export const router = express.Router()
 
-const controller = new HomeController()
+const controller = new IssueController()
 
 router.get('/', controller.index)
+router.get('/closed', controller.closed)

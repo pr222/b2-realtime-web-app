@@ -7,11 +7,14 @@
 
 import express from 'express'
 import createError from 'http-errors'
-import { router as homeRouter } from './home-router.js'
+import { router as issueRouter } from './issue-router.js'
+import { router as webhookRouter } from './webhook-router.js'
 
 export const router = express.Router()
 
-router.use('/', homeRouter)
+router.use('/', issueRouter)
+
+router.use('/webhook', webhookRouter)
 
 // router.use('/name', nameRouter)
 // router.use('/name/', nameRouter)
