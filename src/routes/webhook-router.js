@@ -6,12 +6,12 @@
  */
 
 import express from 'express'
-// import { WebhookController } from '../controllers/webhook-controller.js'
-// import { IssueController } from '../controllers/issue-controller.js'
+import { WebhookController } from '../controllers/webhook-controller.js'
+import { IssueController } from '../controllers/issue-controller.js'
 
 export const router = express.Router()
 
-// const controller = new WebhookController()
-// const issueController = new IssueController()
+const controller = new WebhookController()
+const issueController = new IssueController()
 
-// router.post('/', controller.authorize, controller.index, create.issueController)
+router.post('/', controller.authorize, controller.index, issueController.create)

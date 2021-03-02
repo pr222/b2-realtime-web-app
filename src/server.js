@@ -36,8 +36,10 @@ const main = async () => {
   app.set('view engine', 'hbs')
   app.set('views', join(fullDirectory, 'views'))
 
+  // application/x-www-form-urlencoded
   app.use(express.urlencoded({ extended: false }))
-  // Encoding + webbhook
+  // application/json
+  app.use(express.json())
 
   app.use(express.static(join(fullDirectory, '..', 'public')))
   // Session Options
@@ -68,12 +70,6 @@ const main = async () => {
 
   // Errors
   app.use(function (err, req, res, next) {
-    if (err.status === 403) {
-      return res
-        .status(403)
-        .sendFile(join(fullDirectory, 'views', 'errors', '403-forbidden.html'))
-    }
-
     if (err.status === 404) {
       return res
         .status(404)
