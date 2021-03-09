@@ -1,1 +1,14 @@
-<h1>All the open issues</h1>
+<h1>Opened issues</h1>
+
+{{#if viewData.issues.length}}
+    {{#each viewData.issues}}
+      <section>
+        <img src="{{avatar}}" alt="User Avatar" height="50"></img>
+        <h2>{{title}}</h2>
+        <p>{{description}}</p>
+        <button id="removeButton"><a href="./{{iid}}/remove/">Close</a></button>
+      </section>
+    {{/each}}
+{{else}}
+  <p>No opened issues...</p>
+{{/if}}
