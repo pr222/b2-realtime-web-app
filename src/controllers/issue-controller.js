@@ -4,6 +4,7 @@
  * @author Pauliina Raitaniemi <pr222ja@student.lnu.se>
  * @version 1.0.0
  */
+import fetch from 'node-fetch'
 
 /**
  * Encapsulation of a controller.
@@ -16,10 +17,32 @@ export class IssueController {
    * @param {object} res - Express response object.
    * @param {Function} next - Express next-middleware function.
    */
-  index (req, res, next) {
+  async index (req, res, next) {
     try {
       // Get all open issues and display the viewData
-      res.render('issues/index')
+      const response = await fetch(`${process.env.PROJECT_URL}`, {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${process.env.HOOK_SECRET}`
+        }
+      })
+
+      // const issues = await response.json()
+      // console.log(issues)
+
+      const viewData = {
+        issues: (await response.json())
+          .map(issue => ({
+            id: issue.id,
+            iid: issue.iid,
+            title: issue.title,
+            description: issue.description,
+            state: issue.state,
+            avatar: issue.author.avatar_url
+          }))
+      }
+      console.log(viewData)
+      res.render('issues/index', { viewData })
     } catch (error) {
       next(error)
     }

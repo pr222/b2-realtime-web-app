@@ -1,6 +1,5 @@
 import '../socket.io/socket.io.js'
 
-// /^\/socket\.io\/socket\.io(\.min|\.msgpack\.min)?\.js(\.map)?$/
 console.log('HELLOOOOO CLIENT!')
 
 const baseURL = document.querySelector('base').getAttribute('href')
