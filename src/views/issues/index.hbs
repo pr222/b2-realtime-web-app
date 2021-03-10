@@ -1,14 +1,24 @@
 <h1>Opened issues</h1>
 
-{{#if viewData.issues.length}}
-    {{#each viewData.issues}}
-      <section>
-        <img src="{{avatar}}" alt="User Avatar" height="50"></img>
-        <h2>{{title}}</h2>
-        <p>{{description}}</p>
-        <button id="removeButton"><a href="./{{iid}}/remove/">Close</a></button>
-      </section>
-    {{/each}}
-{{else}}
-  <p>No opened issues...</p>
-{{/if}}
+<div id="sectionsWrapper">
+  {{#if viewData.issues.length}}
+      {{#each viewData.issues}}
+        <section>
+          <img src="{{avatar}}" alt="User Avatar" height="50"></img>
+          <h2>{{title}}</h2>
+          <p>{{description}}</p>
+          <button id="removeButton"><a href="./{{iid}}/remove/">Close</a></button>
+        </section>
+      {{/each}}
+  {{else}}
+    <p>No opened issues...</p>
+  {{/if}}
+</div>
+
+{{!-- Template for the client to use  --}}
+<template id="issue-template">
+    <img src="{{this.avatar}}" alt="User Avatar" height="50"></img>
+    <h2>{{this.title}}</h2>
+    <p>{{this.description}}</p>
+    <button id="removeButton"><a href="./{{this.iid}}/remove/">Close</a></button>
+</template>

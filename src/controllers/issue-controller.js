@@ -38,7 +38,7 @@ export class IssueController {
             avatar: issue.author.avatar_url
           }))
       }
-
+      // console.log(req.session)
       res.render('issues/index', { viewData })
     } catch (error) {
       next(error)
@@ -58,7 +58,7 @@ export class IssueController {
       const response = await fetch(`${process.env.PROJECT_URL}?state=closed`, {
         method: 'GET',
         headers: {
-          Authorization: `Bearer ${process.env.HOOK_SECRET}`
+          Authorization: `Bearer ${process.env.PROJECT_SECRET}`
         }
       })
 
@@ -89,11 +89,21 @@ export class IssueController {
    */
   create (req, res, next) {
     try {
+      console.log('ISSUECONTROLLER-CREATE')
+      console.log(req.body)
       // Handle POST req from gitlab.
+      res.io.emit('issueEvent', {
+        iid: req.body.iid,
+        title: req.body.title,
+        description: req.body.description,
+        avatar: req.body.avatar_url
+      })
 
-      // res.redirect('.')
+      res.status(200).send('Hook accepted')
+      return
+      // res.redirect('/')
     } catch (error) {
-      // Flash-message
+      next(error)
     }
   }
 }
