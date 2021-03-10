@@ -23,7 +23,7 @@ export class IssueController {
       const response = await fetch(`${process.env.PROJECT_URL}?state=opened`, {
         method: 'GET',
         headers: {
-          Authorization: `Bearer ${process.env.HOOK_SECRET}`
+          Authorization: `Bearer ${process.env.PROJECT_SECRET}`
         }
       })
 

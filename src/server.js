@@ -6,6 +6,7 @@
  */
 import express from 'express'
 import hbs from 'express-hbs'
+import session from 'express-session'
 import logger from 'morgan'
 import http from 'http'
 import { dirname, join } from 'path'
@@ -42,8 +43,28 @@ const main = async () => {
   app.use(express.json())
 
   app.use(express.static(join(fullDirectory, '..', 'public')))
-  // Session Options
 
+  // Session Options
+  const sessionOptions = {
+    name: process.env.SESSION_NAME,
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      maxAge: 1000 * 60 * 60 * 24, // 24 hours
+      httpOnly: true,
+      sameSite: 'lax'
+    }
+  }
+
+  if (app.get('env') === 'production') {
+    app.set('trust proxy', 1)
+    sessionOptions.cookie.secure = true
+  }
+
+  app.use(session(sessionOptions))
+
+  // Socket
   const server = http.createServer(app)
   const io = new Server(server)
 
