@@ -12,3 +12,12 @@
 {{else}}
     <p>No closed issues...</p>
 {{/if}}
+
+
+{{!-- Template for the client to use  --}}
+<template id="issue-template">
+    <img src="\{{this.avatar}}" alt="User Avatar" height="50"></img>
+    <h2>\{{this.title}}</h2>
+    <p>\{{this.description}}</p>
+    <button id="removeButton"><a href="./\{{this.iid}}/remove/">Close</a></button>
+</template>

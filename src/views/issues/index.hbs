@@ -3,7 +3,7 @@
 <div id="sectionsWrapper">
   {{#if viewData.issues.length}}
       {{#each viewData.issues}}
-        <section>
+        <section id="this.iid">
           <img src="{{this.avatar}}" alt="User Avatar" height="50"></img>
           <h2>{{this.title}}</h2>
           <p>{{this.description}}</p>

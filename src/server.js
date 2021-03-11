@@ -29,15 +29,19 @@ const main = async () => {
 
   // Helmet
   app.use(helmet())
-  app.use(helmet.contentSecurityPolicy({
-    directives: {
-      ...helmet.contentSecurityPolicy.getDefaultDirectives(),
-      'img-src': ["'self'", 'https://gitlab.lnu.se/'],
-      'script-src': ["'self'", "'unsafe-eval'", 'https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js'],
-      'style-src': ["'self'", 'https://fonts.googleapis.com/'],
-      'font-src': ["'self'", 'https://fonts.gstatic.com']
-    }
-  }))
+  app.use(
+    helmet.contentSecurityPolicy({
+      directives: {
+        ...helmet.contentSecurityPolicy.getDefaultDirectives(),
+        'img-src': ["'self'", 'https://gitlab.lnu.se/'],
+        'script-src': ["'self'", "'unsafe-eval'", 'https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js'],
+        'style-src': ["'self'", 'https://fonts.googleapis.com/'],
+        'font-src': ["'self'", 'https://fonts.gstatic.com'],
+        'connect-src': ["'self'"]
+      }
+    })
+  )
+  app.use(express.static(join(fullDirectory, '..', 'public')))
 
   // Set up view engine
   app.engine('hbs', hbs.express4({
@@ -52,8 +56,6 @@ const main = async () => {
   app.use(express.urlencoded({ extended: false }))
   // application/json
   app.use(express.json())
-
-  app.use(express.static(join(fullDirectory, '..', 'public')))
 
   // Session Options
   const sessionOptions = {

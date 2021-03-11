@@ -97,7 +97,8 @@ export class IssueController {
         iid: req.body.iid,
         title: req.body.title,
         description: req.body.description,
-        // avatar: req.body.avatar
+        avatar: req.body.avatar,
+        state: req.body.state
       })
 
       res.status(200).send('Hook accepted')
