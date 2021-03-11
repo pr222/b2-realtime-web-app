@@ -89,15 +89,15 @@ export class IssueController {
    */
   create (req, res, next) {
     try {
-      console.log('ISSUECONTROLLER-CREATE')
-      console.log(req.body)
+      // console.log('ISSUECONTROLLER-CREATE')
+      // console.log(req.body)
 
       // Handle POST req from gitlab.
       res.io.emit('issueEvent', {
         iid: req.body.iid,
         title: req.body.title,
         description: req.body.description,
-        avatar: req.body.avatar
+        // avatar: req.body.avatar
       })
 
       res.status(200).send('Hook accepted')

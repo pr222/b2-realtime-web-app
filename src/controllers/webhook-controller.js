@@ -22,11 +22,11 @@ export class WebhookController {
       iid: req.body.object_attributes.iid,
       title: req.body.object_attributes.title,
       description: req.body.object_attributes.description,
-      avatar: req.body.user.avatar_url
+      // avatar: req.body.user.avatar_url
     }
 
-    console.log('CONTROLLER-INDEX')
-    console.log(req.body)
+    // console.log('CONTROLLER-INDEX')
+    // console.log(req.body)
 
     next()
   }
