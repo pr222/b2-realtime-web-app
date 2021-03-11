@@ -5,6 +5,7 @@
  * @version 1.0.0
  */
 import fetch from 'node-fetch'
+import { isOpen, isClosed } from '../helpers/helpers.js'
 
 /**
  * Encapsulation of a controller.
@@ -20,7 +21,8 @@ export class IssueController {
   async index (req, res, next) {
     try {
       // Get all open issues and display the viewData
-      const response = await fetch(`${process.env.PROJECT_URL}?state=opened`, {
+      // const response = await fetch(`${process.env.PROJECT_URL}?state=opened`, {
+      const response = await fetch(`${process.env.PROJECT_URL}`, {
         method: 'GET',
         headers: {
           Authorization: `Bearer ${process.env.PROJECT_SECRET}`
@@ -35,7 +37,9 @@ export class IssueController {
             title: issue.title,
             description: issue.description,
             state: issue.state,
-            avatar: issue.author.avatar_url
+            avatar: issue.author.avatar_url,
+            open: isOpen(`${issue.state}`),
+            closed: isClosed(`${issue.state}`)
           }))
       }
       // console.log(req.session)
@@ -70,7 +74,8 @@ export class IssueController {
             title: issue.title,
             description: issue.description,
             state: issue.state,
-            avatar: issue.author.avatar_url
+            avatar: issue.author.avatar_url//,
+            // closed: this.isClosed(issue.state)
           }))
       }
 
@@ -98,7 +103,10 @@ export class IssueController {
         title: req.body.title,
         description: req.body.description,
         avatar: req.body.avatar,
-        state: req.body.state
+        state: req.body.state,
+        action: req.body.action//,
+        // open: this.isOpen(req.body.state),
+        // closed: this.isClosed(req.body.state)
       })
 
       res.status(200).send('Hook accepted')

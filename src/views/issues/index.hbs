@@ -1,14 +1,33 @@
-<h1>Opened issues</h1>
+<nav class="courtesy">
+    <ul>
+      <li id="dropdown">Choose an issue to re-open:</li>
+    </ul>
+    <div class="list">
+      <ul>
+        {{#if viewData.issues.length}}
+          {{#each viewData.issues}}
+            {{#if closed}}
+              <li><a href="#">{{title}}</a></li>
+            {{/if}}
+          {{/each}}
+        {{/if}}
+      </ul>
+    </div>
+  </nav>
+
+<h1>Open</h1>
 
 <div id="sectionsWrapper">
   {{#if viewData.issues.length}}
       {{#each viewData.issues}}
-        <section id="this.iid">
+        {{#if open}}
+        <section id="issue_{{this.iid}}">
           <img src="{{this.avatar}}" alt="User Avatar" height="50"></img>
           <h2>{{this.title}}</h2>
           <p>{{this.description}}</p>
           <button id="removeButton"><a href="./{{this.iid}}/remove/">Close</a></button>
         </section>
+        {{/if}}
       {{/each}}
   {{else}}
     <p>No opened issues...</p>

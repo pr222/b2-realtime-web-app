@@ -2,7 +2,7 @@
 
 {{#if viewData.issues.length}}
     {{#each viewData.issues}}
-      <section>
+      <section id="issue_{{this.iid}}">
         <img src="{{avatar}}" alt="User Avatar" height="50"></img>
         <h2>{{title}}</h2>
         <p>{{description}}</p>

@@ -99,6 +99,26 @@ h1 a:link,  h1 a:visited, .courtesy a:link, .courtesy a:visited {
     background-color: #4646463a;
 }
 
+/* Main drop-down menu */
+.list {
+    display: none;
+    position: absolute;
+    z-index: 1;
+    right: 0;
+    padding-right: 20px; 
+    padding-left: 15px;
+    background-color: #a2a2a2;
+}
+
+.list ul {
+      display: flex;
+      flex-direction: column;
+}
+
+.courtesy:hover .list{
+    display: block;
+}
+
 /* --- Styles for different parts of the page  --- */
 header {
     background-color: rgb(220 220 220);

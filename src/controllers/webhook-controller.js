@@ -17,17 +17,15 @@ export class WebhookController {
    * @param {Function} next - Express next-middleware function.
    */
   index (req, res, next) {
-    // filter into req.body with what to extract from the data to send further from the hook into issues.
+    // Choose only relevant information.
     req.body = {
       iid: req.body.object_attributes.iid,
       title: req.body.object_attributes.title,
       description: req.body.object_attributes.description,
       avatar: req.body.user.avatar_url,
-      state: req.body.object_attributes.state
+      state: req.body.object_attributes.state,
+      action: req.body.object_attributes.action
     }
-
-    // console.log('CONTROLLER-INDEX')
-    // console.log(req.body)
 
     next()
   }

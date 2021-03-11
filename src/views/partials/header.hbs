@@ -1,8 +1,23 @@
 <header>
   <h1><a href="./">ISSUES</a></h1>
-  <nav class="courtesy">
+  {{!-- <nav class="courtesy">
     <ul>
-      <li><a href="./closed">Closed</a></li>
+      <li id="dropdown">Choose an issue to re-open:</li>
     </ul>
-  </nav>
+    <div class="list">
+      <ul>
+        {{#if viewData.issues.length}}
+          {{#each viewData.issues}}
+            {{#if closed}}
+              <li><a href="#">{{title}}</a></li>
+            {{/if}}
+        {{/if}}
+      </ul>
+    </div>
+    
+  </nav> --}}
 </header>
+
+    {{!-- <ul>
+      <li><a href="./closed">Closed</a></li>
+    </ul> --}}

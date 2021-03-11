@@ -20,7 +20,7 @@ if (issueTemplate) {
   console.log(socket)
 
   socket.on('issueEvent', data => {
-    if (data.state === 'closed') {
+    if (data.action === 'close') {
       console.log(`Close ${data.iid}`)
       // REmove from the DOM
       const sectionToRemove = document.querySelector(`#issue_${data.iid}`)
