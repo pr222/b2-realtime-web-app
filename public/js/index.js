@@ -37,15 +37,19 @@ if (issueTemplate) {
  * @param {object} data - of current issue.
  */
 function addToPage (data) {
-  const hbsTemplate = window.Handlebars.compile(issueTemplate.innerHTML)
-  const issueString = hbsTemplate(data)
+  const issueAlreadyOnPage = document.querySelector(`#issue_${data.iid}`)
 
-  const section = document.createElement('section')
-  section.id = `issue_${data.iid}`
-  section.innerHTML = issueString
+  if (!issueAlreadyOnPage) {
+    const hbsTemplate = window.Handlebars.compile(issueTemplate.innerHTML)
+    const issueString = hbsTemplate(data)
 
-  const wrapper = document.querySelector('#sectionsWrapper')
-  wrapper.appendChild(section)
+    const section = document.createElement('section')
+    section.id = `issue_${data.iid}`
+    section.innerHTML = issueString
+
+    const wrapper = document.querySelector('#sectionsWrapper')
+    wrapper.appendChild(section)
+  }
 }
 
 /**
