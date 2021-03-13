@@ -20,6 +20,10 @@ if (issueTemplate) {
       } else if (onClosedPage) {
         addToPage(data)
       }
+      // When an issue is updated
+    } else if (data.action === 'update') {
+      console.log('AN ISSUE NEEDS UPDATING')
+      updateOnPage(data)
     } else {
       // When an issue is opened or re-opened
       if (onOpenPage) {
@@ -29,6 +33,33 @@ if (issueTemplate) {
       }
     }
   })
+}
+
+/**
+ * Remove issue from the page.
+ *
+ * @param {object} data - of current issue.
+ */
+function removeFromPage (data) {
+  const issueSectionToRemove = document.querySelector(`#issue_${data.iid}`)
+  if (issueSectionToRemove) {
+    issueSectionToRemove.remove()
+  }
+}
+
+/**
+ * Update an already rendered issue.
+ *
+ * @param {object} data - of current issue.
+ */
+function updateOnPage (data) {
+  const issueSection = document.querySelector(`#issue_${data.iid}`)
+  issueSection.innerHTML = ''
+
+  const hbsTemplate = window.Handlebars.compile(issueTemplate.innerHTML)
+  const issueString = hbsTemplate(data)
+  issueSection.innerHTML = issueString
+  console.log(issueSection)
 }
 
 /**
@@ -46,20 +77,9 @@ function addToPage (data) {
     const section = document.createElement('section')
     section.id = `issue_${data.iid}`
     section.innerHTML = issueString
+    console.log(section)
 
     const wrapper = document.querySelector('#sectionsWrapper')
     wrapper.appendChild(section)
-  }
-}
-
-/**
- * Remove issue from the page.
- *
- * @param {object} data - of current issue.
- */
-function removeFromPage (data) {
-  const issueSectionToRemove = document.querySelector(`#issue_${data.iid}`)
-  if (issueSectionToRemove) {
-    issueSectionToRemove.remove()
   }
 }

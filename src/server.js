@@ -91,7 +91,6 @@ const main = async () => {
 
   // Middlewares
   app.use((req, res, next) => {
-    // Flash messages
     res.locals.baseURL = baseURL
     res.locals.session = req.session
     res.io = io
