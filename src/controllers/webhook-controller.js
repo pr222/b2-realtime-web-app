@@ -10,14 +10,13 @@
  */
 export class WebhookController {
   /**
-   * Render view and send rendered HTML string as a HTTP response.
+   * Only keep relevant information coming from the request body.
    *
    * @param {object} req - Express request object.
    * @param {object} res - Express response object.
    * @param {Function} next - Express next-middleware function.
    */
   index (req, res, next) {
-    // Choose only relevant information.
     req.body = {
       iid: req.body.object_attributes.iid,
       title: req.body.object_attributes.title,
@@ -31,7 +30,7 @@ export class WebhookController {
   }
 
   /**
-   * Render view and send rendered HTML string as a HTTP response.
+   * Make sure token from gitlab matches the hook-secret.
    *
    * @param {object} req - Express request object.
    * @param {object} res - Express response object.

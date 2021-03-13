@@ -6,9 +6,9 @@
  */
 
 /**
- * Check if document owner and current user are equal.
+ * Check for open state.
  *
- * @param {string} documentOwner - name of document owner.
+ * @param {string} state - current state.
  * @returns {boolean} - true when matching.
  */
 export function isOpen (state) {
@@ -18,12 +18,12 @@ export function isOpen (state) {
 }
 
 /**
- * Check if document owner and current user are equal.
+ * Check for closed state.
  *
- * @param {string} documentOwner - name of document owner.
+ * @param {string} state - current state.
  * @returns {boolean} - true when matching.
  */
- export function isClosed (state) {
+export function isClosed (state) {
   if (state === 'closed') {
     return true
   }

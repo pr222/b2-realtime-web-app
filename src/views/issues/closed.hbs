@@ -1,18 +1,21 @@
 <h1>Closed issues</h1>
 
-{{#if viewData.issues.length}}
-    {{#each viewData.issues}}
-      <section id="issue_{{this.iid}}">
-        <img src="{{avatar}}" alt="User Avatar" height="50"></img>
-        <h2>{{title}}</h2>
-        <p>{{description}}</p>
-        <button id="openButton"><a href="./{{iid}}/open/">Open</a></button>
-      </section>
-    {{/each}}
-{{else}}
-    <p>No closed issues...</p>
-{{/if}}
-
+<div id="closedIssues">
+  <div id="sectionsWrapper">
+    {{#if viewData.issues.length}}
+        {{#each viewData.issues}}
+          <section id="issue_{{this.iid}}">
+            <img src="{{avatar}}" alt="User Avatar" height="50"></img>
+            <h2>{{title}}</h2>
+            <p>{{description}}</p>
+            <button id="openButton"><a href="./{{iid}}/open/">Open</a></button>
+          </section>
+        {{/each}}
+    {{else}}
+        <p>No closed issues...</p>
+    {{/if}}
+  </div>
+</div>
 
 {{!-- Template for the client to use  --}}
 <template id="issue-template">
