@@ -8,13 +8,11 @@
             <img src="{{avatar}}" alt="User Avatar" height="50"></img>
             <h2>{{title}}</h2>
             <p>{{description}}</p>
-            <form action="../update/reopen/{{this.iid}}" method="POST">
+            <form action="./update/reopen/{{this.iid}}" method="POST">
               <input type="submit" value="Open">
             </form>
           </section>
         {{/each}}
-    {{else}}
-        <p>No closed issues...</p>
     {{/if}}
   </div>
 </div>
@@ -24,7 +22,7 @@
     <img src="\{{this.avatar}}" alt="User Avatar" height="50"></img>
     <h2>\{{this.title}}</h2>
     <p>\{{this.description}}</p>
-    <form action="../update/reopen/\{{this.iid}}" method="POST">
+    <form action="./update/reopen/\{{this.iid}}" method="POST">
       <input type="submit" value="Open">
     </form>
 </template>

@@ -14,10 +14,7 @@ export const router = express.Router()
 
 router.use('/', issueRouter)
 
-router.use('/webhook', webhookRouter)
-
-// router.use('/name', nameRouter)
-// router.use('/name/', nameRouter)
+router.use('/webhook/', webhookRouter)
 
 router.use('*', (req, res, next) => {
   return next(createError(404, 'Not Found'))

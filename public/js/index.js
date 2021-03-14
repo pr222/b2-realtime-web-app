@@ -22,14 +22,26 @@ if (issueTemplate) {
       }
       // When an issue is updated
     } else if (data.action === 'update') {
-      console.log('AN ISSUE NEEDS UPDATING')
-      updateOnPage(data)
-    } else {
-      // When an issue is opened or re-opened
+      if (onOpenPage) {
+        if (data.state === 'opened') {
+          updateOnPage(data)
+        }
+      } else if (onClosedPage) {
+        if (data.state === 'closed') {
+          updateOnPage(data)
+        }
+      }
+      // When an issue is re-opened
+    } else if (data.action === 'reopen') {
       if (onOpenPage) {
         addToPage(data)
       } else if (onClosedPage) {
         removeFromPage(data)
+      }
+      // When a new issue is opened.
+    } else if (data.action === 'open') {
+      if (onOpenPage) {
+        addToPage(data)
       }
     }
   })
@@ -59,7 +71,6 @@ function updateOnPage (data) {
   const hbsTemplate = window.Handlebars.compile(issueTemplate.innerHTML)
   const issueString = hbsTemplate(data)
   issueSection.innerHTML = issueString
-  console.log(issueSection)
 }
 
 /**
@@ -77,7 +88,6 @@ function addToPage (data) {
     const section = document.createElement('section')
     section.id = `issue_${data.iid}`
     section.innerHTML = issueString
-    console.log(section)
 
     const wrapper = document.querySelector('#sectionsWrapper')
     wrapper.appendChild(section)

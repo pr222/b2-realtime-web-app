@@ -130,7 +130,7 @@ export class IssueController {
         action: issue.action
       })
 
-      res.redirect('/')
+      res.redirect('../../')
     } catch (error) {
       next(error)
     }

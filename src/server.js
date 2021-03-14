@@ -33,7 +33,7 @@ const main = async () => {
     helmet.contentSecurityPolicy({
       directives: {
         ...helmet.contentSecurityPolicy.getDefaultDirectives(),
-        'img-src': ["'self'", 'https://gitlab.lnu.se/'],
+        'img-src': ["'self'", 'https://gitlab.lnu.se/', 'https://secure.gravatar.com'],
         'script-src': ["'self'", "'unsafe-eval'", 'https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js'],
         'style-src': ["'self'", 'https://fonts.googleapis.com/'],
         'font-src': ["'self'", 'https://fonts.gstatic.com'],
