@@ -112,22 +112,11 @@ export class IssueController {
    */
   async update (req, res, next) {
     try {
-      const response = await fetch(`${process.env.PROJECT_URL}/${req.params.iid}?state_event=${req.params.act}`, {
+      await fetch(`${process.env.PROJECT_URL}/${req.params.iid}?state_event=${req.params.act}`, {
         method: 'PUT',
         headers: {
           Authorization: `Bearer ${process.env.PROJECT_SECRET}`
         }
-      })
-
-      const issue = await response.json()
-
-      res.io.emit('issueEvent', {
-        iid: issue.iid,
-        title: issue.title,
-        description: issue.description,
-        avatar: issue.author.avatar_url,
-        state: issue.state,
-        action: issue.action
       })
 
       res.redirect('../../')
