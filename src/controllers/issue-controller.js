@@ -79,7 +79,7 @@ export class IssueController {
   }
 
   /**
-   * Send socket message with a newly opended issue.
+   * Emit an issueEvent to the socket with new issue data.
    *
    * @param {object} req - Express request object.
    * @param {object} res - Express response object.
@@ -104,7 +104,7 @@ export class IssueController {
   }
 
   /**
-   * Get all closed issues and render closed-page.
+   * Make a PUT request to change the open/closed state of an issue.
    *
    * @param {object} req - Express request object.
    * @param {object} res - Express response object.
