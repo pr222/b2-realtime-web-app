@@ -81,14 +81,6 @@ const main = async () => {
   const server = http.createServer(app)
   const io = new Server(server)
 
-  io.on('connection', (socket) => {
-    console.log('User connected...')
-
-    socket.on('disconnect', () => {
-      console.log('User disconnected...')
-    })
-  })
-
   // Middlewares
   app.use((req, res, next) => {
     res.locals.baseURL = baseURL
